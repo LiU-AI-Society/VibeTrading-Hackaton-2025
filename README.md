@@ -47,11 +47,11 @@ You have five pre-built $\text{ML}$ bots, each using a distinct core algorithm t
 
 | Bot Name | Technique | Approach | Key $\text{sklearn}$ Model |
 | :--- | :--- | :--- | :--- |
-| **The BackProp Buddy** 🔄 | Multi-Layer Perceptron | **Regression** (Predicts Return Magnitude) | `MLPRegressor` |
+| **Hyperplane Hippie** 🔄 | Multi-Layer Perceptron | **Regression** (Predicts Return Magnitude) | `MLPRegressor` |
 | **Lord of the Bins** 🗑️ | Logistic Regression | **Classification** (Predicts Up/Down Probability) | `LogisticRegression` |
 | **The Baguette Booster** 🥖 | Random Forest | **Classification** (Ensemble Voting) | `RandomForestClassifier` |
 | **KNN Cash Cow** 🐄 | K-Nearest Neighbors | **Classification** (Proximity/Historical Match) | `KNeighborsClassifier` |
-| **The Vector Vestment** 📐 | Support Vector Machine | **Classification** (Hyperplane Separation) | `SVC` (To be implemented) |
+| **"My cool bot"** 📐 | Up to the user | **Classification/Regression** | (To be implemented) |
 
 ---
 
