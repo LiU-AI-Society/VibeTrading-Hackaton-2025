@@ -17,26 +17,7 @@ pip3 --version
 
 You shall now see version numbers for both.
 
-## Step 2: Install docker
-1. Open terminal and run these commands:
-```bash
-sudo apt update
-sudo apt install docker.io -y
-sudo systemctl start docker
-sudo systemctl enable docker
-sudo usermod -aG docker $USE
-```
-
-2. Log out and log back in for the changes to take place.
-
-3. **Verify it worked**:
-```bash
-  docker --version
-```
-
-You shall now see a version number.
-
-## Step 3: Install Git
+## Step 2: Install Git
 
 1. Open the terminal (Ctrl + Alt + T) and write these commands in the terminal:
 ```bash
@@ -51,7 +32,7 @@ sudo apt install git -y
 
 You shall now see a version number.
 
-## Step 4: Install VS Code
+## Step 3: Install VS Code
 
 1. Open the terminal (Ctrl + Alt + T) and write this command in the terminal:
 ```bash
@@ -71,11 +52,11 @@ You shall now see a version number.
 
 ### Step 1: Fork and Clone the Repository
 
-1. Go to the [AI Grand Prix repository](https://github.com/ErikssonWilliam/AI-Grand-Prix)
+1. Go to the hackaton [(https://github.com/ErikssonWilliam/VibeTrading-Hackaton)]
 2. Click the "Fork" button in the top-right corner to create your own copy
 3. Open terminal and clone your forked repository, replace YourUsername with the actual name:
 ```bash
-git clone https://github.com/YourUsername/AI-Grand-Prix.git
+git clone https://github.com/YourUsername/VibeTrading-Hackaton.git
 cd AI-Grand-Prix
 ```
 
@@ -90,23 +71,13 @@ source .venv/bin/activate
 ```
 Your terminal prompt should now show (venv) at the beginning
 
-3. Move into the python-server folder
-```bash
-cd python-server
-```
-4. Install correct python packages
+3. Install correct python packages
 ```bash
 pip install -r requirements.txt
-```
-
-5. Move out to the root again
-```bash
-cd ..
 ```
 
 ### Step 3: Run the game
 
 ```bash
-chmod +x setup.sh
-./setup.sh
+python strategies/"bot_name"/"bot_name.py"
 ```
