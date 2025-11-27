@@ -2,6 +2,20 @@
 
 Welcome to the **VibeTrading Hackathon**! Your mission is to develop a machine learning strategy that correctly captures the market's "vibe" (momentum and reversals) to generate **Alpha** returns greater than the simple Buy and Hold benchmark.
 
+**Python:** The programming language you'll be using to write your AI. 
+
+**VSCode (or other code editor):** The code editor you'll use to write and edit your Python code.  
+
+**Git:** Version control tool you'll use to download the hackaton code and save your changes.
+
+## Setup Instructions
+
+Choose your operating system for complete setup instructions:
+
+- [**Windows Setup Guide**](Windows_setup.md) - Complete installation guide for Windows
+- [**macOS Setup Guide**](Mac_setup.md) - Complete installation guide for Mac
+- [**Linux Setup Guide**](Linux_setup.md) - Complete installation guide for Linux
+
 ## 🏆 The Challenge: Maximize Alpha and Control Risk
 
 The winner will be the team that creates the most profitable bot that successfully manages risk.
