@@ -85,7 +85,7 @@ To generate Alpha, you must modify the strategy templates using the three primar
 
 ## ⚙️ How to Run Your Strategy
 
-1.  Open the corresponding Python file (e.g., `strategies/knn_cash_cow/knn_strategy_template.py`).
+1.  Open the corresponding Python file (e.g., `strategies/knn_cash_cow/knn_cash_cow.py`).
 2.  Make your changes to **Sections A and B**.
 3.  Run the file from your terminal (from the project root):
     ```bash
