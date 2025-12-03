@@ -1,5 +1,6 @@
 .env
 .venv
+/submissions/
 
 # Data cache
 ./data/stock_data_cache.csv

@@ -26,6 +26,12 @@ if df.empty:
     print("Cannot proceed without data. Exiting.")
     exit()
 
+SUBMISSION_FOLDER = os.path.join(project_root, 'submissions')
+
+# Ensure the submission directory exists
+if not os.path.exists(SUBMISSION_FOLDER):
+    os.makedirs(SUBMISSION_FOLDER)
+
 # =========================================================================
 # EDIT FROM THIS POINT DOWNWARDS
 # =========================================================================
@@ -116,5 +122,6 @@ for ticker in TICKERS_IN_TEST:
 # MODEL SAVING (DO NOT MODIFY)
 # =========================================================================
 
-joblib.dump(model, SUBMISSION_NAME)
-print(f"\n SUBMISSION READY: Model saved as {SUBMISSION_NAME}")
+FULL_SUBMISSION_PATH = os.path.join(SUBMISSION_FOLDER, SUBMISSION_NAME)
+joblib.dump(model, FULL_SUBMISSION_PATH)
+print(f"\nSUBMISSION READY: Model saved as {FULL_SUBMISSION_PATH}")
