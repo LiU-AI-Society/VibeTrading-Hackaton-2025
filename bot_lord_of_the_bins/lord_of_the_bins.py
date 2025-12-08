@@ -44,11 +44,11 @@ if not os.path.exists(SUBMISSION_FOLDER):
 # --- CONFIGURATION (Participants can adjust these) ---
 FAST_WINDOW = 20
 SLOW_WINDOW = 50
-N_DAYS_PREDICT = 5       
+N_DAYS_PREDICT = 50       
 SUBMISSION_NAME = 'my_team_name_logreg_submission.joblib'
 INITIAL_CAPITAL = 10000.0 
 # Buy only if the model predicts the probability of an "Up" move (class 1) is above this threshold.
-CLASSIFICATION_THRESHOLD = 0.55 
+CLASSIFICATION_THRESHOLD = 0.3 
 # ---------------------------------------------------
 
 # SECTION A: FEATURE ENGINEERING AND TARGET DEFINITION

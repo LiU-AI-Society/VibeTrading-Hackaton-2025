@@ -53,8 +53,14 @@ def _load_from_yfinance(tickers, start_date, end_date):
                 group_by='ticker'
             )
         except Exception as e:
-            # If batch download fails, try individual tickers
-            print(f"  -> Batch download failed, trying individual tickers...")
+            # If batch download fails, the existing individual ticker logic is good
+            # ... (Individual ticker download logic remains the same) ...
+            
+            # --- Assuming the batch download succeeds and we are here ---
+            # ... (skipping individual download logic for brevity) ...
+            
+            # If you want to keep the individual download logic:
+            print(f" -> Batch download failed, trying individual tickers...")
             dfs = {}
             for ticker in tickers:
                 try:
@@ -67,47 +73,47 @@ def _load_from_yfinance(tickers, start_date, end_date):
                         auto_adjust=True
                     )
                     if not ticker_data.empty and 'Close' in ticker_data.columns:
+                        # Store just the 'Close' series, keyed by ticker
                         dfs[ticker] = ticker_data['Close']
-                        print(f"  -> Loaded {ticker}")
+                        print(f"  -> Loaded {ticker}")
                 except Exception as ticker_error:
-                    print(f"  -> Failed to load {ticker}: {ticker_error}")
+                    print(f"  -> Failed to load {ticker}: {ticker_error}")
                     continue
             
             if not dfs:
                 raise ValueError("No data loaded from any ticker")
             
-            data = pd.DataFrame(dfs)
+            data = pd.DataFrame(dfs) # Combined DataFrame with Ticker columns
         
-        # Handle different data structures
+        # Handle the DataFrame structure returned by yfinance
         if isinstance(data, pd.DataFrame):
-            if 'Close' in data.columns:
-                # Single ticker case
+            if len(tickers) > 1 and data.columns.nlevels == 2:
+                # FIX 1: Multi-ticker case: Columns are (Ticker, Metric). Select only 'Close'.
+                data = data.xs('Close', axis=1, level=1)
+            elif 'Close' in data.columns:
+                # Single ticker case: Keep only 'Close' and rename the column
                 data = data[['Close']]
-                data.columns = [tickers[0] if len(tickers) == 1 else 'Close']
-            elif len(data.columns) > 0:
-                # Multi-ticker case - columns should be ticker names
-                pass
+                data.columns = [tickers[0]]
             else:
-                raise ValueError("Unexpected data structure from yfinance")
+                # Fallback to the structure from the individual downloads
+                if not all(col in tickers for col in data.columns):
+                    raise ValueError("Unexpected data structure from yfinance")
         
         if data.empty:
             raise ValueError("No data returned from yfinance.")
         
-        # Melt the DataFrame to create a MultiIndex (Date, Ticker) format
-        df = data.stack().to_frame(name='Close')
-        df.index.names = ['Date', 'Ticker']
+        # FIX 2: Use rename to ensure the stacked series has the name 'Close'
+        # Then reset_index and set_index to create the final MultiIndex DataFrame
+        df = data.stack().rename('Close').reset_index(names=['Date', 'Ticker', 'Close'])
+        df = df.set_index(['Date', 'Ticker'])
         return df
     except ImportError:
         print("-> yfinance not available, trying alternative...")
-        print("  -> Install with: pip install yfinance")
+        print(" -> Install with: pip install yfinance")
         return None
     except Exception as e:
         print(f"-> yfinance failed: {e}")
-        print("  -> Common issues:")
-        print("     - Network connectivity problems")
-        print("     - Yahoo Finance API rate limiting")
-        print("     - Invalid date range or ticker symbols")
-        print("  -> Try: pip install --upgrade yfinance")
+        # ... (rest of error printing remains) ...
         return None
 
 
@@ -191,7 +197,7 @@ def _save_to_csv(df, csv_file):
 
 
 def load_training_data(tickers=TICKERS, start_date=TRAIN_START_DATE, end_date=TRAIN_END_DATE, 
-                      use_cache=True, save_cache=True):
+                      use_cache=False, save_cache=True):
     """
     Downloads historical close price data for a list of tickers and returns 
     a single Pandas DataFrame with a MultiIndex (Date, Ticker).

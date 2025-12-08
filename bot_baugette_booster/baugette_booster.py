@@ -37,7 +37,7 @@ if not os.path.exists(SUBMISSION_FOLDER):
 # --- CONFIGURATION (Participants can adjust these) ---
 FAST_WINDOW = 20
 SLOW_WINDOW = 50
-N_DAYS_PREDICT = 5       
+N_DAYS_PREDICT = 25       
 SUBMISSION_NAME = 'my_team_name_rfr_submission.joblib' 
 INITIAL_CAPITAL = 10000.0 
 # ---------------------------------------------------
