@@ -109,7 +109,15 @@ def run_single_stock_analysis(df_ticker: pd.DataFrame, ticker: str, initial_capi
     # Plotting Buy Signals
     buy_dates = signal_series[signal_series == 1].index
     buy_prices = df_prices.loc[buy_dates, 'Close']
+
+    sell_dates = signal_series[
+        (signal_series == 0) & # Today's signal is to hold cash
+        (signal_series.shift(1) == 1) # Yesterday's signal was to be invested
+    ].index
+    sell_prices = df_prices.loc[sell_dates, 'Close']
+    
     ax1.scatter(buy_dates, buy_prices, marker='^', color='green', label='Buy Signal', alpha=0.8, s=50)
+    ax1.scatter(sell_dates, sell_prices, marker='v', color='red', label='Sell Signal', alpha=0.8, s=50)
 
     # Legend for Top Plot
     lines, labels = ax1.get_legend_handles_labels() 
