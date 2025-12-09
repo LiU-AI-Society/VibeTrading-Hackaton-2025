@@ -48,7 +48,7 @@ N_DAYS_PREDICT = 50
 SUBMISSION_NAME = 'my_team_name_logreg_submission.joblib'
 INITIAL_CAPITAL = 10000.0 
 # Buy only if the model predicts the probability of an "Up" move (class 1) is above this threshold.
-CLASSIFICATION_THRESHOLD = 0.3 
+CLASSIFICATION_THRESHOLD = 0.32
 # ---------------------------------------------------
 
 # SECTION A: FEATURE ENGINEERING AND TARGET DEFINITION
@@ -118,4 +118,4 @@ for ticker in TICKERS_IN_TEST:
 # SUBMIT (SAVE) THE FINAL MODEL
 FULL_SUBMISSION_PATH = os.path.join(SUBMISSION_FOLDER, SUBMISSION_NAME)
 joblib.dump(model, FULL_SUBMISSION_PATH)
-print(f"\nSUBMISSION READY: Model saved as {FULL_SUBMISSION_PATH}")
+#print(f"\nSUBMISSION READY: Model saved as {FULL_SUBMISSION_PATH}")

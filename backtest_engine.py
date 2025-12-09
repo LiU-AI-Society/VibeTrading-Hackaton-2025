@@ -137,7 +137,7 @@ def run_single_stock_analysis(df_ticker: pd.DataFrame, ticker: str, initial_capi
     fig.tight_layout()
     start_date = df_ticker.index.min()
     end_date = df_ticker.index.max()
-    print(f"Backtesting Window: {start_date} to {end_date}")
+    #print(f"Backtesting Window: {start_date} to {end_date}")
 
     # --- SAVE PLOT ---
     output_base_dir = os.path.dirname(strategy_file_path)
@@ -148,7 +148,7 @@ def run_single_stock_analysis(df_ticker: pd.DataFrame, ticker: str, initial_capi
     FULL_PATH = os.path.join(output_plot_dir, PLOT_FILENAME)
     plt.savefig(FULL_PATH)
     plt.close()
-    print(f"Plot saved successfully to: {FULL_PATH}")
+    #print(f"Plot saved successfully to: {FULL_PATH}")
     
     
     return strategy_return, buy_and_hold_return, sharpe_ratio, mdd
